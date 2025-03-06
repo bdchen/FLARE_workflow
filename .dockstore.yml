@@ -1,0 +1,7 @@
+version: 1.2
+workflows:
+  - name: FLARE_multiple_chrs
+    subclass: WDL
+    primaryDescriptorPath: /FLARE_multiple_chrs.wdl
+    testParameterFiles:
+      - /flare_test_data.json
