@@ -33,9 +33,10 @@ workflow run_flare {
   }
 
   output {
-    Array[File] log_array     = select_all(flatten([[flare1.log    ], flares.log    ]))
-    Array[File] model_array   = select_all(flatten([[flare1.model  ], flares.model  ]))
-    Array[File] anc_vcf_array = select_all(flatten([[flare1.anc_vcf], flares.anc_vcf]))
+    Array[File] log_array        = select_all(flatten([[flare1.log    ], flares.log    ]))
+    Array[File] model_array      = select_all(flatten([[flare1.model  ], flares.model  ]))
+    Array[File] anc_vcf_array    = select_all(flatten([[flare1.anc_vcf], flares.anc_vcf]))
+    Array[File] global_anc_array = select_all(flatten([[flare1.global_anc], flares.global_anc]))
   }
     
   meta {
