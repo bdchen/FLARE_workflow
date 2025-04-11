@@ -1,6 +1,6 @@
 version: 1.2
 workflows:
-  - name: FLARE_multiple_chrs
+  - name: run_flare
     subclass: WDL
     primaryDescriptorPath: /FLARE_multiple_chrs.wdl
     testParameterFiles:
