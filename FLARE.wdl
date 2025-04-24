@@ -62,7 +62,8 @@ task flare {
       Float  min_maf = 0.005
         Int  min_mac = 50
         Int  gen     = 10
-        Int  seed    = -99999 
+        Int  seed    = -99999
+        Int? nthreads
        File? model
        File? gt_samples
        File? gt_ancestries
@@ -92,7 +93,8 @@ task flare {
       ~{"model="          + model         } \
       ~{"gt-samples="     + gt_samples    } \
       ~{"gt-ancestries="  + gt_ancestries } \
-      ~{"excludemarkers=" + excludemarkers}
+      ~{"excludemarkers=" + excludemarkers} \
+      ~{"nthreads=" + nthreads}
   >>>
 
   output {
