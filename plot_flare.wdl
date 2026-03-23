@@ -50,7 +50,7 @@ task plot_global_anc {
             return(flr)
         }
 
-        flare_files <- readLines('~{write_lines(global_anc_array})')
+        flare_files <- readLines('~{write_lines(global_anc_array)}')
         dat <- combine_chrs(flare_files, chr_weights)
 
         K <- ncol(dat) - 1
