@@ -60,8 +60,8 @@ task plot_global_anc {
         dat <- mutate(dat, n=row_number())
         dat <- dat %>% pivot_longer(cols = all_of(cluster_order), names_to='Cluster', values_to='K')
         dat[['Cluster']] <- factor(dat[['Cluster']], levels = cluster_order)
-        d2 <- brewer.pal(8, 'Dark2'); s1 <- brewer.pal(8, 'Set2')
-        colormap <- setNames(c(s1, d2)[1:K], group_names)
+        d2 <- brewer.pal(8, 'Dark2'); s2 <- brewer.pal(8, 'Set2')
+        colormap <- setNames(c(d2, s2)[1:K], group_names)
         ggbar <- ggplot(dat, aes(x=n, y=K, fill=Cluster, color=Cluster)) + 
             geom_bar(stat='identity') + 
             scale_fill_manual(values=colormap, breaks=rev(names(colormap))) + 
