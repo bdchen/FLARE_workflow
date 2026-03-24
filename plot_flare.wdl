@@ -29,20 +29,20 @@ task plot_global_anc {
 
         chr_sizes <- read_tsv("https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.chrom.sizes", col_names=c("chrom", "size")) %>%
         filter(chrom %in% paste0("chr", 1:22))
-        total_size <- sum(chr_sizes$size)
+        total_size <- sum(chr_sizes[["size"]])
         chr_sizes <- chr_sizes %>%
             mutate(chr_num = as.integer(sub("chr", "", chrom))) %>%
             arrange(chr_num) %>%
             mutate(weight = size / total_size)
-        chr_weights <- chr_sizes$weight
+        chr_weights <- chr_sizes[["weight"]]
 
         combine_chrs <- function(flare_files, chr_weights) {
             tmp <- read_tsv(flare_files[1])
-            samples <- as.character(tmp$SAMPLE)
+            samples <- as.character(tmp[["SAMPLE"]])
             fracs <- tmp[,-1] * chr_weights[1]
             for (c in 1:22) {
                 tmp <- read_tsv(flare_files[c])
-                stopifnot(all(tmp$SAMPLE == samples))
+                stopifnot(all(tmp[["SAMPLE"]] == samples))
                 fracs <- fracs + tmp[,-1] * chr_weights[c]
             }
             fracs <- fracs / rowSums(fracs)
