@@ -46,7 +46,7 @@ task plot_global_anc {
                 fracs <- fracs + tmp[,-1] * chr_weights[c]
             }
             fracs <- fracs / rowSums(fracs)
-            flr <- bind_cols(sample=samples, fracs)
+            flr <- bind_cols(sample_id=samples, fracs)
             return(flr)
         }
 
