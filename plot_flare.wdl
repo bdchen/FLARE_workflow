@@ -20,7 +20,6 @@ workflow plot_flare {
 task plot_global_anc {
     input {
         Array[File] global_anc_array
-        Array[File]
     }
 
     command <<<
