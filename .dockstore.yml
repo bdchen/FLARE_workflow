@@ -5,3 +5,7 @@ workflows:
     primaryDescriptorPath: /FLARE.wdl
     testParameterFiles:
       - /flare_test_data.json
+  - name: plot_flare
+    subclass: WDL
+    primaryDescriptorPath: /plot_flare.wdl
+

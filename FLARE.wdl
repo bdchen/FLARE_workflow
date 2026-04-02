@@ -1,5 +1,7 @@
 version 1.0
 
+import "plot_flare.wdl" as plot
+
 workflow run_flare {
   input {
     # Required Inputs
@@ -84,11 +86,17 @@ workflow run_flare {
     }
   }
 
+  call plot.plot_global_anc {
+    input:
+      global_anc_array = select_all(flatten([[flare1.global_anc], flares.global_anc]))
+  }
+
   output {
     Array[File] log_array        = select_all(flatten([[flare1.log], flares.log]))
     Array[File] model_array      = select_all(flatten([[flare1.model], flares.model]))
     Array[File] anc_vcf_array    = select_all(flatten([[flare1.anc_vcf], flares.anc_vcf]))
     Array[File] global_anc_array = select_all(flatten([[flare1.global_anc], flares.global_anc]))
+    File global_anc_plot = plot_global_anc.global_anc_plot
   }
 
   meta {
