@@ -26,7 +26,7 @@ workflow run_flare {
     File? excludemarkers
 
     # Runtime specs
-    Int gb_disk = 20
+    #Int gb_disk = 20
     Int gb_mem = 10
     Int n_cpu = 1
     Int preemptible = 0
@@ -51,7 +51,7 @@ workflow run_flare {
       gt_samples = gt_samples,
       gt_ancestries = gt_ancestries,
       excludemarkers = excludemarkers,
-      gb_disk = gb_disk,
+      #gb_disk = gb_disk,
       gb_mem = gb_mem,
       n_cpu = n_cpu,
       preemptible = preemptible
@@ -78,7 +78,7 @@ workflow run_flare {
           gt_samples = gt_samples,
           gt_ancestries = gt_ancestries,
           excludemarkers = excludemarkers,
-          gb_disk = gb_disk,
+          #gb_disk = gb_disk,
           gb_mem = gb_mem,
           n_cpu = n_cpu,
           preemptible = preemptible
@@ -129,11 +129,13 @@ task flare {
     File? excludemarkers
 
     # Runtime specs
-    Int gb_disk
+    #Int gb_disk
     Int gb_mem
     Int n_cpu
     Int preemptible
   }
+
+  Int gb_disk = ceil(2*(size(ref, "GB") + size(gt, "GB") + size(map, "GB") + size(ref_panel, "GB"))) + 10
 
   command <<<
     java ~{"-Xmx" + gb_mem + "G"} -jar /flare.jar \
