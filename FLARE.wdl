@@ -135,7 +135,7 @@ task flare {
     Int preemptible
   }
 
-  Int gb_disk = ceil(5*(size(ref, "GB") + size(gt, "GB") + size(map, "GB") + size(ref_panel, "GB"))) + 10
+  Int gb_disk = ceil(3*(size(ref, "GB") + size(gt, "GB") + size(map, "GB") + size(ref_panel, "GB"))) + 10
 
   command <<<
     java ~{"-Xmx" + gb_mem + "G"} -jar /flare.jar \
